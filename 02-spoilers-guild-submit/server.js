@@ -80,11 +80,12 @@ app.get('/api/guild/:name', async (request, response) => {
   
 })
 
-//1. turn a call back into an async function
+//todo stop players from inserting
+//todo add poisoned property to new players with a default of false
 app.post('/api/guild', async (request, response) => {
-  //2. create an instance of our model
+  
   const player = new Player(request.body)
-  //3. save our data to atlas
+  
   await player.save()
   
   response.send(player)
