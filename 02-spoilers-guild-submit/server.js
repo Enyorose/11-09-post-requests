@@ -33,7 +33,11 @@ mongoose.connect(
 
 const playerSchema = new mongoose.Schema({
   id: Number,
-  name: String,
+  //todo stop players from inserting
+  name: {
+    type: String,
+    unique: true
+  },
   class: String,
   race: String,
   strength: Number,
@@ -42,7 +46,11 @@ const playerSchema = new mongoose.Schema({
   intelligence: Number,
   wisdom: Number,
   charisma: Number,
-  poisoned: Boolean
+  //todo add poisoned property to new players with a default of false
+  poisoned: { 
+    type: Boolean,
+    default: false
+  }
 })
 
 /*****************/
@@ -80,11 +88,12 @@ app.get('/api/guild/:name', async (request, response) => {
   
 })
 
-//todo stop players from inserting
-//todo add poisoned property to new players with a default of false
+
 app.post('/api/guild', async (request, response) => {
   
   const player = new Player(request.body)
+
+  player.poisoned = false
   
   await player.save()
   
