@@ -90,10 +90,8 @@ app.get('/api/guild/:name', async (request, response) => {
 
 
 app.post('/api/guild', async (request, response) => {
-  
+  //todo add some validation with a try catch block
   const player = new Player(request.body)
-
-  player.poisoned = false
   
   await player.save()
   
