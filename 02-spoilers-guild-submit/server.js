@@ -5,10 +5,12 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
 
-const express = require('express')
+const express = require('express');
+const { response } = require('express');
 const app = express()
 
 app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }));
 
 /********************/
 /* Connect to Atlas */
@@ -75,6 +77,10 @@ app.get('/api/guild/:name', async (request, response) => {
   } catch(err) {
     response.send({error: 'Player Not Found'})
   }
+  
+})
+app.post('/api/guild', (request, response) => {
+  response.send(request.body)
   
 })
 
