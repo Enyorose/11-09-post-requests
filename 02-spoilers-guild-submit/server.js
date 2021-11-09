@@ -79,10 +79,16 @@ app.get('/api/guild/:name', async (request, response) => {
   }
   
 })
-app.post('/api/guild', (request, response) => {
+
+//1. turn a call back into an async function
+app.post('/api/guild', async (request, response) => {
+  //2. create an instance of our model
+
+  //3. save our data to atlas
+
   response.send(request.body)
-  
 })
+
 
 /****************************/
 /* Handle 404, start server */
