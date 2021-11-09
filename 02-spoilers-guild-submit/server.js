@@ -83,10 +83,11 @@ app.get('/api/guild/:name', async (request, response) => {
 //1. turn a call back into an async function
 app.post('/api/guild', async (request, response) => {
   //2. create an instance of our model
-
+  const player = new Player(request.body)
   //3. save our data to atlas
-
-  response.send(request.body)
+  await player.save()
+  
+  response.send(player)
 })
 
 
